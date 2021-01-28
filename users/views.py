@@ -1,4 +1,6 @@
 """Users views."""
+
+# Django
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
@@ -6,7 +8,6 @@ from django.shortcuts import render, redirect
 # Forms
 from users.forms import ProfileForm, SignupForm
 
-# Create your views here.
 
 @login_required
 def update_profile(request):
@@ -50,7 +51,8 @@ def login_view(request):
             login(request, user)
             return redirect('feed')
         else:
-            return render(request, 'users/login.html', {'error': 'Ivanlid username and password'})
+            return render(request, 'users/login.html', {'error': 'Invalid username and password'})
+
     return render(request, 'users/login.html')
 
 
@@ -73,6 +75,6 @@ def signup(request):
 
 @login_required
 def logout_view(request):
-    """Logout view."""
+    """Logout a user."""
     logout(request)
     return redirect('login')

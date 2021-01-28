@@ -1,13 +1,15 @@
-"""Users Models"""
+"""Users models."""
 
 # Django
 from django.contrib.auth.models import User
 from django.db import models
 
-# Create your models here.
+
 class Profile(models.Model):
     """Profile model.
-    proxi model that extends the base data with other information
+
+    Proxy model that extends the base data with other
+    information.
     """
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -20,11 +22,11 @@ class Profile(models.Model):
         upload_to='users/pictures',
         blank=True,
         null=True
-        )
+    )
 
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        """Return username. """
+        """Return username."""
         return self.user.username
